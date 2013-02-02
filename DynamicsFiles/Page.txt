@@ -1,0 +1,264 @@
+OBJECT Page 50010 U¾ytkownicy
+{
+  OBJECT-PROPERTIES
+  {
+    Date=13-01-13;
+    Time=18:02:33;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+    SourceTable=Table50010;
+    PageType=List;
+  }
+  CONTROLS
+  {
+    { 1000000000;0;Container;
+                ContainerType=ContentArea }
+
+    { 1000000001;1;Group  ;
+                Name=Group;
+                GroupType=Repeater }
+
+    { 1000000010;2;Field  ;
+                SourceExpr="No." }
+
+    { 1000000002;2;Field  ;
+                SourceExpr=Nazwa }
+
+    { 1000000003;2;Field  ;
+                SourceExpr=Adres }
+
+    { 1000000004;2;Field  ;
+                SourceExpr=Miasto }
+
+    { 1000000005;2;Field  ;
+                SourceExpr="Kod Pocztowy" }
+
+    { 1000000006;2;Field  ;
+                SourceExpr=Kraj }
+
+    { 1000000007;2;Field  ;
+                SourceExpr="E-Mail" }
+
+    { 1000000008;2;Field  ;
+                SourceExpr=Firma }
+
+    { 1000000009;2;Field  ;
+                SourceExpr=Portfel }
+
+  }
+  CODE
+  {
+
+    BEGIN
+    END.
+  }
+}
+
+OBJECT Page 50011 Zam¢wione towary
+{
+  OBJECT-PROPERTIES
+  {
+    Date=13-01-24;
+    Time=10:17:52;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+    SourceTable=Table50011;
+    PageType=List;
+    OnInsertRecord=VAR
+                     towarRec@1000000000 : Record 50012;
+                   BEGIN
+                   END;
+
+    OnModifyRecord=VAR
+                     towarRec@1000000000 : Record 50012;
+                     zamTowRec@1000000001 : Record 50011;
+                   BEGIN
+                   END;
+
+  }
+  CONTROLS
+  {
+    { 1000000000;0;Container;
+                ContainerType=ContentArea }
+
+    { 1000000001;1;Group  ;
+                Name=Group;
+                GroupType=Repeater }
+
+    { 1000000002;2;Field  ;
+                SourceExpr="No." }
+
+    { 1000000003;2;Field  ;
+                SourceExpr=Towar;
+                OnValidate=VAR
+                             towarRec@1000000000 : Record 50012;
+                           BEGIN
+                           END;
+                            }
+
+    { 1000000004;2;Field  ;
+                Numeric=Yes;
+                SourceExpr=Ilo˜†;
+                MinValue=1;
+                OnValidate=VAR
+                             towarRec@1000000000 : Record 50012;
+                           BEGIN
+                             IF towarRec.GET(Towar) THEN
+                              BEGIN
+                               IF towarRec."Dost©pna ilo˜†" < Ilo˜† THEN
+                                BEGIN
+                                 FIELDERROR(Ilo˜†, 'Maksymalna warto˜† to ' + FORMAT(towarRec."Dost©pna ilo˜†"));
+                                END;
+                               Koszt := towarRec.Cena * Ilo˜†;
+                              END
+                             ELSE
+                              BEGIN
+                               FIELDERROR(Towar, 'Nie ma takiego towaru !');
+                              END;
+                           END;
+                            }
+
+    { 1000000005;2;Field  ;
+                Numeric=Yes;
+                SourceExpr=Koszt;
+                Editable=true;
+                OnValidate=VAR
+                             towarRec@1000000000 : Record 50012;
+                           BEGIN
+                           END;
+                            }
+
+    { 1000000006;2;Field  ;
+                SourceExpr=Zam¢wienie;
+                TableRelation=Zam¢wienie.No. }
+
+    { 1000000007;2;Field  ;
+                SourceExpr="Cena zakupu" }
+
+  }
+  CODE
+  {
+
+    BEGIN
+    END.
+  }
+}
+
+OBJECT Page 50012 Towary
+{
+  OBJECT-PROPERTIES
+  {
+    Date=13-01-13;
+    Time=18:37:04;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+    SourceTable=Table50012;
+    PageType=List;
+  }
+  CONTROLS
+  {
+    { 1000000000;0;Container;
+                ContainerType=ContentArea }
+
+    { 1000000001;1;Group  ;
+                Name=Group;
+                GroupType=Repeater }
+
+    { 1000000002;2;Field  ;
+                SourceExpr="No." }
+
+    { 1000000003;2;Field  ;
+                SourceExpr=Nazwa }
+
+    { 1000000004;2;Field  ;
+                SourceExpr=Opis }
+
+    { 1000000005;2;Field  ;
+                SourceExpr=Cena }
+
+    { 1000000006;2;Field  ;
+                SourceExpr="Dost©pna ilo˜†" }
+
+    { 1000000007;2;Field  ;
+                SourceExpr=Dostawca }
+
+    { 1000000008;2;Field  ;
+                Lookup=Yes;
+                SourceExpr=Zdj©cie }
+
+  }
+  CODE
+  {
+
+    BEGIN
+    END.
+  }
+}
+
+OBJECT Page 50013 Zam¢wienia
+{
+  OBJECT-PROPERTIES
+  {
+    Date=13-01-24;
+    Time=10:17:28;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+    SourceTable=Table50013;
+    PageType=List;
+  }
+  CONTROLS
+  {
+    { 1000000000;0;Container;
+                ContainerType=ContentArea }
+
+    { 1000000001;1;Group  ;
+                Name=Group;
+                GroupType=Repeater }
+
+    { 1000000002;2;Field  ;
+                SourceExpr="No." }
+
+    { 1000000003;2;Field  ;
+                SourceExpr="Data zam¢wienia";
+                Editable=true }
+
+    { 1000000004;2;Field  ;
+                SourceExpr="Data dostarczenia";
+                Editable=true }
+
+    { 1000000005;2;Field  ;
+                SourceExpr="Potwierdzenie dostawy";
+                OnValidate=VAR
+                             emptyDate@1000000000 : DateTime;
+                           BEGIN
+                           END;
+                            }
+
+    { 1000000006;2;Field  ;
+                SourceExpr="Kwota do zapˆaty" }
+
+    { 1000000007;2;Field  ;
+                SourceExpr=Klient;
+                TableRelation=U¾ytkownik.No. }
+
+  }
+  CODE
+  {
+
+    BEGIN
+    END.
+  }
+}
+

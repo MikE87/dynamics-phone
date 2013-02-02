@@ -1,0 +1,17 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_IDynamicsServices" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://mike-acer:50000/DynamicsProxy" binding="basicHttpBinding"
+                bindingConfiguration="BasicHttpBinding_IDynamicsServices"
+                contract="DynamicsServiceRef.IDynamicsServices" name="BasicHttpBinding_IDynamicsServices" />
+        </client>
+    </system.serviceModel>
+</configuration>

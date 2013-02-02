@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DynamicsServices.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DynamicsServices_UserPageRef_User_Service" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:7047/DynamicsNAV/WS/CRONUS/Page/User</Value>
+    </Setting>
+    <Setting Name="DynamicsServices_ProductPageRef_Product_Service" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:7047/DynamicsNAV/WS/CRONUS/Page/Product</Value>
+    </Setting>
+    <Setting Name="DynamicsServices_OrderPageRef_Order_Service" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:7047/DynamicsNAV/WS/CRONUS/Page/Order</Value>
+    </Setting>
+    <Setting Name="DynamicsServices_OrderedItemsPageRef_OrderedItems_Service" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost:7047/DynamicsNAV/WS/CRONUS/Page/OrderedItems</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

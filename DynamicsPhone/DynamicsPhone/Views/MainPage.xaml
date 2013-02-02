@@ -1,0 +1,148 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="DynamicsPhone.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False" BackKeyPress="PhoneApplicationPage_BackKeyPress">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+ 
+        <!--Panorama control-->
+        <controls:Pivot Title="Dynamics Phone">
+            <controls:Pivot.Background>
+                <ImageBrush ImageSource="PanoramaBackground.png"/>
+            </controls:Pivot.Background>
+ 
+            <!--Panorama item one-->
+            <controls:PivotItem Header="My info" DataContext="{Binding Path=User}" Background="#50000000">
+                <!--Double line list with text wrapping-->
+                
+                    <StackPanel>
+                        <Grid>
+                            <Button Content="Sync" Name="buttonSync" HorizontalAlignment="Left" VerticalAlignment="Top" Click="buttonSync_Click" />
+                            <Button Content="Log out" HorizontalAlignment="Right" 
+                                        HorizontalContentAlignment="Center" 
+                                        VerticalContentAlignment="Center" Margin="0" 
+                                        Name="buttonLogOut" Click="buttonLogOut_Click" />
+                        </Grid>
+                        <TextBlock Text="Name:" FontSize="26" Foreground="Gainsboro" />
+                        <TextBlock Text="{Binding Path=Name}" FontSize="26" TextWrapping="Wrap" Padding="20,0,0,0" />
+
+                        <TextBlock Text="E-mail:" FontSize="26" Foreground="Gainsboro" />
+                        <TextBlock Text="{Binding Path=Email}" FontSize="26" TextWrapping="Wrap" Padding="20,0,0,0" />
+                        
+                        <TextBlock Text="Address:" FontSize="26" Foreground="Gainsboro" />
+                        <TextBlock Text="{Binding Path=Address}" FontSize="26" TextWrapping="Wrap" Padding="20,0,0,0" />
+                        
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                            <TextBlock Text="City:" Width="130" FontSize="26" Foreground="Gainsboro" />
+                            <TextBlock Text="{Binding Path=City}" FontSize="26" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Post code:" Width="130" FontSize="26" Foreground="Gainsboro" />
+                            <TextBlock Text="{Binding Path=PostalCode}" FontSize="26" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Country:" Width="130" FontSize="26" Foreground="Gainsboro" />
+                            <TextBlock Text="{Binding Path=CountryCode}" FontSize="26" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Balance:" Width="130" FontSize="26" Foreground="Gainsboro" />
+                            <TextBlock Text="{Binding Path=Balance}" FontSize="26" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Products:" Width="130" FontSize="26" Foreground="Gainsboro" />
+                            <TextBlock Text="{Binding Path=Products.Count}" FontSize="26" />
+                        </StackPanel>
+                </StackPanel>
+
+            </controls:PivotItem>
+ 
+            <!--Panorama item two-->
+            <!--Use 'Orientation="Horizontal"' to enable a panel that lays out horizontally-->
+            <controls:PivotItem Header="My orders" Background="#50000000">
+                <!--Double line list with image placeholder and text wrapping-->
+                <Grid>
+                    <Button Content="New Order" HorizontalAlignment="Right" VerticalAlignment="Top" Name="buttonNewOrder" Click="buttonNewOrder_Click" />
+                    <ListBox Margin="0,70,-12,0" ItemsSource="{Binding Path=User.Orders}" Name="lbOrders" SelectionChanged="lbOrders_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Width="450">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Nr:" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" />
+                                        <TextBlock Text="{Binding Path=No}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Width="355" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Order date:" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}" Width="110" />
+                                        <TextBlock Text="{Binding Path=OrderDate}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Total cost:" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}" Width="110" />
+                                        <TextBlock Text="{Binding Path=TotalCost}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    </StackPanel>
+                                    <StackPanel.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#39000000" Offset="0.328" />
+                                            <GradientStop Color="#96FFFFFF" Offset="1" />
+                                            <GradientStop Color="#ADFFFFFF" Offset="0" />
+                                            <GradientStop Color="#39000000" Offset="0.836" />
+                                        </LinearGradientBrush>
+                                    </StackPanel.Background>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </controls:PivotItem>
+            
+            <!--Panorama item three-->
+            <!--Use 'Orientation="Horizontal"' to enable a panel that lays out horizontally-->
+            <controls:PivotItem Header="My products" Background="#50000000">
+                <!--Double line list with image placeholder and text wrapping-->
+                <Grid>
+                    <Button Name="btnNewProduct" Content="Add product" HorizontalAlignment="Right" Click="btnNewProduct_Click" VerticalAlignment="Top" />
+
+                    <ListBox Margin="0,70,-12,0" ItemsSource="{Binding Path=User.Products}" Name="lbProducts">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,17">
+                                    <!--Replace rectangle with image-->
+                                    <!--<Image Height="100" Width="100" Margin="12,0,9,0" Source="{Binding Path=Photo}" />-->
+                                    <StackPanel Width="445">
+                                        <TextBlock Text="{Binding Path=Name}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Width="435" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="Price:" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}" Width="80" />
+                                            <TextBlock Text="{Binding Path=Price}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="In Stock:" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}" Width="80" />
+                                            <TextBlock Text="{Binding Path=Count}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                        </StackPanel>
+                                        <StackPanel.Background>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#39000000" Offset="0.328" />
+                                                <GradientStop Color="#96FFFFFF" Offset="1" />
+                                                <GradientStop Color="#ADFFFFFF" Offset="0" />
+                                                <GradientStop Color="#39000000" Offset="0.836" />
+                                            </LinearGradientBrush>
+                                        </StackPanel.Background>
+                                    </StackPanel>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>                
+            </controls:PivotItem>
+        </controls:Pivot>
+    </Grid>
+</phone:PhoneApplicationPage>

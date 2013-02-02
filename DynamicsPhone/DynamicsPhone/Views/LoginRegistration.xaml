@@ -1,0 +1,73 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="DynamicsPhone.LoginRegistration"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True" BackKeyPress="PhoneApplicationPage_BackKeyPress">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <!--Pivot Control-->
+        <controls:Pivot Title="Dynamics Phone">
+            <!--Pivot item one-->
+            <controls:PivotItem Header="Login">
+                <StackPanel x:Name="loginContent">
+                    <TextBlock x:Name="labelEmail" Text="E-mail:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,0,0,0" FontSize="40" />
+                    <TextBox x:Name="textBoxEmail" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="labelPassword" Text="Password:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,40,0,0" FontSize="40" />
+                    <PasswordBox x:Name="textBoxPassword" VerticalAlignment="Top" />
+                    <TextBlock Text="{Binding LoginStatus}" Padding="20,0,0,0" />
+                    <Button Content="Login" Height="100" Name="buttonLogin" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,70,0,0" FontSize="40" Click="buttonLogin_Click" />
+                    <CheckBox IsChecked="{Binding UserLogged}" IsEnabled="False" IsHitTestVisible="False" IsTabStop="False" Visibility="Collapsed" Name="userLogged" Background="Transparent" BorderBrush="Transparent" Foreground="Transparent" Checked="userLogged_Checked" />
+                </StackPanel>
+            </controls:PivotItem>
+
+            <!--Pivot item two-->
+            <controls:PivotItem Header="Register">
+                <ScrollViewer>
+                    <StackPanel>
+                        <TextBlock Text="Name:" FontSize="28" />
+                        <TextBox x:Name="tbName"/>
+                        <TextBlock Text="E-mail:" FontSize="28" />
+                        <TextBox x:Name="tbEmail"/>
+                        <TextBlock Text="Password" FontSize="28" />
+                        <PasswordBox x:Name="tbPass"/>
+                        <TextBlock Text="Country Code:" FontSize="28" />
+                        <TextBox x:Name="tbCountryCode"/>
+                        <TextBlock Text="City:" FontSize="28" />
+                        <TextBox x:Name="tbCity"/>
+                        <TextBlock Text="Address:" FontSize="28" />
+                        <TextBox x:Name="tbAddress"/>
+                        <TextBlock Text="Postal Code:" FontSize="28" />
+                        <TextBox x:Name="tbPostCode"/>
+                        <CheckBox x:Name="isCompany" Content="Are You a company ?" FontSize="28" />
+                        <TextBlock Text="{Binding RegisterStatus}"/>
+                        <Button Content="Register" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,50" FontSize="36" Name="buttonRegister" Click="buttonRegister_Click" />
+                    </StackPanel>
+                </ScrollViewer>
+            </controls:PivotItem>
+        </controls:Pivot>
+    </Grid>
+
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton x:Name="appbar_button1" IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton x:Name="appbar_button2" IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem x:Name="menuItem1" Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem x:Name="menuItem2" Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+    
+</phone:PhoneApplicationPage>

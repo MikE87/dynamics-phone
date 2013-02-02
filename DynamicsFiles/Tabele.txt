@@ -1,0 +1,195 @@
+OBJECT Table 50010 U¾ytkownik
+{
+  OBJECT-PROPERTIES
+  {
+    Date=13-01-19;
+    Time=21:29:44;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+    OnInsert=VAR
+               txtErrorName@1000000000 : TextConst 'ENG=Name is required';
+               txtErrorPass@1000000001 : TextConst 'ENG=Password is required';
+               userRec@1000000002 : Record 50010;
+             BEGIN
+             END;
+
+  }
+  FIELDS
+  {
+    { 1   ;   ;No.                 ;Integer       ;AutoIncrement=Yes;
+                                                   NotBlank=No;
+                                                   Editable=No }
+    { 2   ;   ;Nazwa               ;Text100       ;OnValidate=VAR
+                                                                txtError@1000000000 : TextConst 'PLK=Nazwa jest wymagana;ENG=Name is required';
+                                                              BEGIN
+                                                              END;
+                                                               }
+    { 3   ;   ;Adres               ;Text100        }
+    { 4   ;   ;Miasto              ;Text30         }
+    { 5   ;   ;Kod Pocztowy        ;Code20         }
+    { 6   ;   ;Kraj                ;Code10         }
+    { 7   ;   ;E-Mail              ;Text80        ;FieldClass=Normal;
+                                                   ExtendedDatatype=E-Mail;
+                                                   NotBlank=Yes }
+    { 8   ;   ;Firma               ;Boolean        }
+    { 9   ;   ;Portfel             ;Decimal        }
+    { 10  ;   ;Pass                ;Text30        ;OnValidate=VAR
+                                                                txtError@1000000000 : TextConst 'PLK=Hasˆo jest wymagane;ENG=Password is required';
+                                                              BEGIN
+                                                              END;
+                                                               }
+  }
+  KEYS
+  {
+    {    ;No.                                     ;Clustered=Yes }
+    {    ;E-Mail                                  ;Clustered=No;
+                                                   SQLIndex=E-Mail }
+  }
+  FIELDGROUPS
+  {
+  }
+  CODE
+  {
+
+    BEGIN
+    END.
+  }
+}
+
+OBJECT Table 50011 Zam¢wiony Towar
+{
+  OBJECT-PROPERTIES
+  {
+    Date=13-01-24;
+    Time=10:18:27;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+  }
+  FIELDS
+  {
+    { 1   ;   ;No.                 ;Integer       ;AutoIncrement=Yes;
+                                                   NotBlank=No;
+                                                   Editable=No }
+    { 2   ;   ;Towar               ;Integer       ;NotBlank=Yes }
+    { 3   ;   ;Ilo˜†               ;Integer       ;InitValue=1;
+                                                   MinValue=1;
+                                                   NotBlank=Yes }
+    { 4   ;   ;Koszt               ;Decimal       ;Editable=Yes }
+    { 5   ;   ;Zam¢wienie          ;Integer       ;TableRelation=Zam¢wienie.No. }
+    { 6   ;   ;Cena zakupu         ;Decimal        }
+  }
+  KEYS
+  {
+    {    ;No.                                     ;Clustered=Yes }
+  }
+  FIELDGROUPS
+  {
+  }
+  CODE
+  {
+
+    PROCEDURE Update@1000000000();
+    VAR
+      towarRec@1000000000 : Record 50012;
+    BEGIN
+      towarRec.SETFILTER("No.", '%1', Towar);
+      towarRec.FINDFIRST;
+      Koszt := Ilo˜† * towarRec.Cena;
+    END;
+
+    BEGIN
+    END.
+  }
+}
+
+OBJECT Table 50012 Towar
+{
+  OBJECT-PROPERTIES
+  {
+    Date=13-01-24;
+    Time=00:14:21;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+  }
+  FIELDS
+  {
+    { 1   ;   ;No.                 ;Integer       ;AutoIncrement=Yes;
+                                                   NotBlank=No;
+                                                   Editable=No }
+    { 2   ;   ;Nazwa               ;Text50         }
+    { 3   ;   ;Opis                ;Text200        }
+    { 4   ;   ;Cena                ;Decimal        }
+    { 5   ;   ;Dost©pna ilo˜†      ;Integer        }
+    { 6   ;   ;Dostawca            ;Integer       ;TableRelation=U¾ytkownik.No.;
+                                                   NotBlank=Yes;
+                                                   Editable=Yes }
+    { 7   ;   ;Zdj©cie             ;BLOB          ;Compressed=No;
+                                                   SubType=Bitmap }
+  }
+  KEYS
+  {
+    {    ;No.                                     ;Clustered=Yes }
+  }
+  FIELDGROUPS
+  {
+  }
+  CODE
+  {
+
+    BEGIN
+    END.
+  }
+}
+
+OBJECT Table 50013 Zam¢wienie
+{
+  OBJECT-PROPERTIES
+  {
+    Date=13-01-23;
+    Time=23:02:44;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+  }
+  FIELDS
+  {
+    { 1   ;   ;No.                 ;Integer       ;FieldClass=Normal;
+                                                   AutoIncrement=No;
+                                                   NotBlank=Yes;
+                                                   Editable=Yes }
+    { 2   ;   ;Data zam¢wienia     ;DateTime       }
+    { 3   ;   ;Data dostarczenia   ;DateTime       }
+    { 4   ;   ;Potwierdzenie dostawy;Boolean      ;InitValue=No;
+                                                   NotBlank=Yes }
+    { 5   ;   ;Kwota do zapˆaty    ;Decimal       ;FieldClass=Normal;
+                                                   NotBlank=Yes;
+                                                   Editable=Yes }
+    { 6   ;   ;Klient              ;Integer       ;TableRelation=U¾ytkownik.No.;
+                                                   NotBlank=Yes }
+  }
+  KEYS
+  {
+    {    ;No.                                     ;Clustered=Yes }
+  }
+  FIELDGROUPS
+  {
+  }
+  CODE
+  {
+
+    BEGIN
+    END.
+  }
+}
+

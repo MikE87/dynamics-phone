@@ -1,0 +1,38 @@
+OBJECT Codeunit 50020 Login user
+{
+  OBJECT-PROPERTIES
+  {
+    Date=13-01-19;
+    Time=20:06:33;
+    Modified=Yes;
+    Version List=;
+  }
+  PROPERTIES
+  {
+    OnRun=BEGIN
+          END;
+
+  }
+  CODE
+  {
+
+    PROCEDURE Login@1000000000(user@1000000003 : Record 50010;pass@1000000001 : Text[30]) status : Boolean;
+    BEGIN
+
+      IF user.Pass = pass THEN
+        status := TRUE
+      ELSE
+        status := FALSE;
+    END;
+
+    PROCEDURE UpdatePassword@1000000001(user@1000000000 : Record 50010;newPass@1000000001 : Text[30]);
+    BEGIN
+      user.Pass := newPass;
+      user.MODIFY;
+    END;
+
+    BEGIN
+    END.
+  }
+}
+

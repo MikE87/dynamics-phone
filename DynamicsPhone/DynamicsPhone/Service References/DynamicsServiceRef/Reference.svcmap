@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="17ddf949-b84b-4804-9207-6336b74a7818" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://127.0.0.1:50000/DynamicsProxy" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="DynamicsProxy4.xsd" MetadataType="Schema" ID="4c87402f-a393-4857-9b1c-fbac9424cc25" SourceId="1" SourceUrl="http://mike-acer:50000/DynamicsProxy?xsd=xsd1" />
+    <MetadataFile FileName="DynamicsProxy.disco" MetadataType="Disco" ID="08c51181-ee84-47fd-976f-51d3cd19cb4b" SourceId="1" SourceUrl="http://mike-acer:50000/DynamicsProxy?disco" />
+    <MetadataFile FileName="DynamicsProxy3.xsd" MetadataType="Schema" ID="fe547f81-eb60-48c1-bf52-d2b88def7ab1" SourceId="1" SourceUrl="http://mike-acer:50000/DynamicsProxy?xsd=xsd0" />
+    <MetadataFile FileName="DynamicsProxy5.xsd" MetadataType="Schema" ID="74f120db-6e91-41c8-a90b-5e3641040366" SourceId="1" SourceUrl="http://mike-acer:50000/DynamicsProxy?xsd=xsd2" />
+    <MetadataFile FileName="DynamicsServices1.wsdl" MetadataType="Wsdl" ID="f2917121-5353-4b9a-9250-c42ba90dd446" SourceId="1" SourceUrl="http://mike-acer:50000/DynamicsProxy?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
