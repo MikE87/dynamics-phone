@@ -1,0 +1,7 @@
+Typ obiektu	Identyfikator obiektu	Nazwa us³ugi	Opublikowane
+
+Jednostka kodu	50020			User		Nie
+Strona		50013			Order		Tak
+Strona		50011			OrderedItems	Tak
+Strona		50012			Product		Tak
+Strona		50010			User		Tak
